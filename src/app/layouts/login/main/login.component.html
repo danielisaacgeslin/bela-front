@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-xs-6">
+      <form class="form-group" [formGroup]="formGroup" (submit)="onSubmit()">
+        <label>Username</label>
+        <input formControlName="username" class="form-control" type="text" placeholder="Username" />
+        <label>Password</label>
+        <input formControlName="password" class="form-control" type="password" placeholder="Password" />
+        <small class="form-text text-muted">username is "user" and password is "password"</small>
+        <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

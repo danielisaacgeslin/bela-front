@@ -1,0 +1,34 @@
+<div class="form-container">
+  <div class="container">
+    <form class="form-group row" [formGroup]="formGroup" (submit)="onSubmit()">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <bela-currency-input
+          class="input"
+          [currency]="formGroup.getRawValue().base"
+          formControlName="baseValue">
+        </bela-currency-input>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <bela-currency-input
+          class="input"
+          [currency]="formGroup.getRawValue().symbol"
+          formControlName="resultValue">
+        </bela-currency-input>
+      </div>
+      <div class="col-xs-12 col-lg-12">
+        <button class="btn btn-primary calculate-btn" type="submit" [disabled]="formGroup.disabled">calculate</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" *ngIf="exchange$ | async; let iterableRates">
+    <div class="col-md-12 col-xs-12">
+      <h3>Historic Price</h3>
+    </div>
+    <div class="col-lg-3 col-md-4 col-xs-12" *ngFor="let rate of iterableRates">
+      <strong>{{rate.symbol}}: </strong> {{rate.value}}
+    </div>
+  </div>
+</div>

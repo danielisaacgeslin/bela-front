@@ -1,0 +1,21 @@
+@import '../../../../variables';
+
+.form-container {
+  background-color: $light-gray;
+  padding-top: 50px;
+  padding-bottom: 25px;
+  margin: 15px 0;
+  border: 3px $gray solid;
+  border-left: 0;
+  border-right: 0;
+  form {
+    .input {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .calculate-btn {
+      display: block;
+      margin: 15px auto;
+    }
+  }
+}
