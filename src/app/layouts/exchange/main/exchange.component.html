@@ -16,19 +16,23 @@
         </bela-currency-input>
       </div>
       <div class="col-xs-12 col-lg-12">
-        <button class="btn btn-primary calculate-btn" type="submit" [disabled]="formGroup.disabled">calculate</button>
+        <button class="btn btn-secondary calculate-btn" type="submit" [disabled]="formGroup.disabled">calculate</button>
       </div>
     </form>
   </div>
 </div>
 
-<div class="container">
+<div class="container historic-container">
   <div class="row" *ngIf="exchange$ | async; let iterableRates">
     <div class="col-md-12 col-xs-12">
-      <h3>Historic Price</h3>
+      <h3 class="title">
+        Historic Price
+        <small class="date">last update: {{lastHistoricUpdate | date: 'short'}}</small>
+      </h3>
     </div>
-    <div class="col-lg-3 col-md-4 col-xs-12" *ngFor="let rate of iterableRates">
-      <strong>{{rate.symbol}}: </strong> {{rate.value}}
+    <div class="col-lg-3 col-md-4 col-xs-12 rate-row" *ngFor="let rate of iterableRates">
+      <span class="rate-item">{{rate.symbol}}</span>
+      <span class="rate-item">{{rate.value}}</span>
     </div>
   </div>
 </div>

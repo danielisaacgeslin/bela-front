@@ -27,6 +27,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   public exchange$: Observable<IterableRate[]> = this.storeService.get('exchange').pipe(
     map((data: Exchange) => Object.keys(data.rates).map(symbol => ({ symbol, value: data.rates[symbol] }))),
   );
+  public lastHistoricUpdate: Date;
   private destroy$: Subject<void> = new Subject<void>();
   private exchangeUpdateInterval: number = 10000;
 
@@ -50,7 +51,10 @@ export class ExchangeComponent implements OnInit, OnDestroy {
     this.currencyService.exchange(base, [symbol]).pipe(
       map(data => data.rates[symbol]),
       tap(rate => this.formGroup.controls.resultValue.setValue(this.calculateExchange(baseValue, rate))),
-      finalize(() => this.formGroup.enable())
+      finalize(() => {
+        this.formGroup.enable();
+        this.formGroup.controls.resultValue.disable();
+      })
     )
       .subscribe();
   }
@@ -58,7 +62,8 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   private updateExchange(): void {
     const { base } = this.formGroup.getRawValue();
     this.currencyService.exchange(base).pipe(
-      tap(data => this.storeService.set('exchange', data))
+      tap(data => this.storeService.set('exchange', data)),
+      tap(() => this.lastHistoricUpdate = new Date())
     )
       .subscribe();
   }

@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { environment } from '../environments/environment';
 
 import { RoutingModule } from './routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -22,7 +25,8 @@ import { AuthGuard } from './services/auth-guard.service';
     BrowserModule,
     HttpClientModule,
     RoutingModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     CurrencyPipe,

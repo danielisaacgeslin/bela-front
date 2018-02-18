@@ -1,9 +1,8 @@
 import { Component, Input, forwardRef, ViewChild, ElementRef } from '@angular/core';
 import { CurrencyPipe, registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
+import localeEsAr from '@angular/common/locales/es-AR';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-
-registerLocaleData(localeEs, 'es-AR');
+registerLocaleData(localeEsAr, 'es-AR');
 
 @Component({
   selector: 'bela-currency-input',
@@ -62,7 +61,9 @@ export class CurrencyInputComponent implements ControlValueAccessor {
   }
 
   private formatCurrency(num: number): string {
-    return this.currencyPipe.transform(num, this.currency, this.symbolDisplay, this.digits, 'es-AR');
+    let curr: string = this.currencyPipe.transform(num, this.currency, this.symbolDisplay, this.digits, 'es-AR');
+    if (this.currency === 'USD') curr = curr.replace('$', 'US$');
+    return curr;
   }
 
   private formatNumber(str: string): number {

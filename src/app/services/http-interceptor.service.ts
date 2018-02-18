@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (jwt) request = request.clone({ setHeaders: { Authorization: jwt } });
     return next.handle(request).pipe(
       catchError((e: any, caught: Observable<HttpEvent<any>>) => {
-        console.log('some error.. i need to write a toast componnent');
+        console.log('I need to write a toast component :(', e);
         return Observable.empty();
       })
     );

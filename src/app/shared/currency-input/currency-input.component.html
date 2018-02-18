@@ -1,9 +1,11 @@
 <input
   #input
+  class="form-control"
+  min="0"
   [value]="innerValue"
   [type]="type"
   (blur)="onBlur()"
   (focus)="onFocus()"
-  class="form-control"
-  [placeholder]="placeholder"
+  [placeholder]="placeholder || currency"
   [disabled]="disabled" />
+  

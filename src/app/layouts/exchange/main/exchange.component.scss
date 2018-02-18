@@ -5,7 +5,7 @@
   padding-top: 50px;
   padding-bottom: 25px;
   margin: 15px 0;
-  border: 3px $gray solid;
+  border: 4px $gray solid;
   border-left: 0;
   border-right: 0;
   form {
@@ -15,7 +15,35 @@
     }
     .calculate-btn {
       display: block;
-      margin: 15px auto;
+      margin: 15px auto 0 auto;
+    }
+  }
+}
+
+.historic-container {
+  .title {
+    color: $gray;
+    font-variant: small-caps;
+    margin-bottom: 10px;
+  }
+  .date {
+    font-size: 12px;
+    margin-left: 10px;
+    font-variant: normal;
+  }
+  .rate-row {
+    margin-bottom: 10px;
+    .rate-item {
+      font-size: 13px;
+      display: block;
+      text-align: center;
+      padding: 2px;
+      &:first-child {
+        background-color: $gray;
+      }
+      &:last-child {
+        background-color: $light-gray;
+      }
     }
   }
 }
